@@ -1,25 +1,33 @@
-from datetime import datetime
-
 
 class Flight:
-    def __init__(self, flight_id: str, origin: str, destination: str,
-                 departure_time: datetime, arrival_time: datetime,
-                 price: float, available_seats: int):
-        if price < 0 or available_seats < 0:
-            raise ValueError("Price and available seats must be non-negative.")
-
+    def __init__(self, flight_id, origin, destination, price, available_seats):
         self.flight_id = flight_id
         self.origin = origin
         self.destination = destination
-        self.departure_time = departure_time
-        self.arrival_time = arrival_time
         self.price = price
         self.available_seats = available_seats
 
-    def book_seat(self, num_seats: int = 1) -> bool:
-        if num_seats <= 0:
-            raise ValueError("Number of seats must be positive.")
-        if self.available_seats >= num_seats:
-            self.available_seats -= num_seats
-            return True
-        return False
+    def is_available(self, seats):
+        return self.available_seats >= seats
+
+    def book_seats(self, seats):
+        if not self.is_available(seats):
+            raise ValueError("Not enough seats available")
+        self.available_seats -= seats
+        return True
+
+    def cancel_seats(self, seats):
+        self.available_seats += seats
+        return True
+
+    def get_price_for_seats(self, seats):
+        return self.price * seats
+
+    def get_flight_info(self):
+        return {
+            "flight_id": self.flight_id,
+            "origin": self.origin,
+            "destination": self.destination,
+            "price": self.price,
+            "available_seats": self.available_seats
+        }
