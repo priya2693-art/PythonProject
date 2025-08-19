@@ -2,7 +2,7 @@
 
 import pytest
 from myproject.flight import Flight
-from myproject.booking import Booking
+from myproject.flightbooking import Booking
 
 
 def test_booking_success():
