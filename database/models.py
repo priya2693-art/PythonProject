@@ -92,3 +92,28 @@ class Hotel(Base):
             "price_per_night": self.price_per_night,
             "available_room": self.available_room
         }
+
+
+# database/models.py
+
+from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class Lead(Base):
+    __tablename__ = "leads"
+
+    id = Column(Integer, primary_key=True, index=True)
+    crm_id = Column(Integer)
+    name = Column(String)
+    phone = Column(String)
+    email = Column(String)
+    from_date = Column(Date)
+    nights = Column(Integer)
+    from_city = Column(String)
+    departure_city = Column(String)
+    destination_city = Column(String)
+    budget = Column(Integer)
+    assigned_seller = Column(String)
+    travelling_cities = Column(String)

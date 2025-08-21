@@ -40,3 +40,26 @@ class Lead:
             "travelling_cities": self.travelling_cities
         }
 
+def validate_lead_data(lead_data):
+        if not lead_data.get('crm_id'):
+            raise ValueError("Invalid or missing required fields")
+        if lead_data.get('nights', 0) < 0:
+            raise ValueError("Invalid or missing required fields")
+
+
+def fetch_lead_from_zoho(crm_id):
+    # Simulated Zoho lead fetching logic (replace with actual Zoho API calls when needed)
+    return {
+        'crm_id': crm_id,
+        'name': 'Default Name',
+        'phone': '0000000000',
+        'email': 'default@example.com',
+        'from_date': '2025-01-01',
+        'nights': 3,
+        'from_city': 'Mumbai',
+        'departure_city': 'BOM',
+        'destination_city': 'Dubai',
+        'assigned_seller': 'priya',
+        'budget': 50000,
+        'travelling_cities': ['Dubai']
+    }
